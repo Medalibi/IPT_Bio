@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraitmentOptionsViewDlg" widgetVar="TraitmentOptionsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTraitmentOptionsTitle}">
+            <h:form id="TraitmentOptionsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{traitmentOptionsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTraitmentOptionsLabel_nameOption}"/>
+                        <h:outputText value="#{traitmentOptionsController.selected.nameOption}" title="#{bundle.ViewTraitmentOptionsTitle_nameOption}"/>
+                        <h:outputText value="#{bundle.ViewTraitmentOptionsLabel_typeOption}"/>
+                        <h:outputText value="#{traitmentOptionsController.selected.typeOption}" title="#{bundle.ViewTraitmentOptionsTitle_typeOption}"/>
+                        <h:outputText value="#{bundle.ViewTraitmentOptionsLabel_dscOption}"/>
+                        <h:outputText value="#{traitmentOptionsController.selected.dscOption}" title="#{bundle.ViewTraitmentOptionsTitle_dscOption}"/>
+                        <h:outputText value="#{bundle.ViewTraitmentOptionsLabel_idTraitementOptions}"/>
+                        <h:outputText value="#{traitmentOptionsController.selected.idTraitementOptions}" title="#{bundle.ViewTraitmentOptionsTitle_idTraitementOptions}"/>
+                        <h:outputText value="#{bundle.ViewTraitmentOptionsLabel_idTraitement}"/>
+                        <h:outputText value="#{traitmentOptionsController.selected.idTraitement}" title="#{bundle.ViewTraitmentOptionsTitle_idTraitement}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TraitmentOptionsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

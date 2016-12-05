@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <p:chart type="metergauge" model="#{sabrineChartsBean.meterGaugeModel}" style="width:285px;height:185px;" />    
+        <p:pieChart value="#{sabrineChartsBean.pieModel}" style="height:200px; width: 250px" sliceMargin="5" legendPosition="o" diameter="135" showDataLabels="true" dataFormat="value '%'" />
+        <p:chart type="bar" model="#{sabrineChartsBean.horizontalBarModel}" style="height:150px; width: 280px"/>
+    </h:body>
+</html>

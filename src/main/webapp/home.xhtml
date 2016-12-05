@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:head>
+        <title> Home page</title>
+        <style>
+            .ui-layout-center {
+                overflow:scroll!important;
+                padding: 0px !important
+            }
+            .ui-widget-content{
+                border:2px !important;
+                padding: 0px !important;
+            }
+            .ui-panelgrid-cell {
+                border:2px !important;
+                padding-left: 2px !important;
+
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <h:form id="MainForm">
+
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="70" style="padding:0px;overflow:visible ; border: 0 ">
+                    <ui:insert name ="My MenuBar">
+                        <ui:include src="MenuBar.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100;" >
+                    History
+                </p:layoutUnit>
+                <p:layoutUnit position="east" header="Resources" size="215" style="border:0;padding: 0px">
+                    <p:scrollPanel mode="native">
+                        <ui:insert name ="Resources" >
+                            <ui:include src="Ressources.xhtml"/>
+                        </ui:insert>
+                    </p:scrollPanel>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="250" header="Process" style="border: 0;padding: 0px" >
+                  <ui:insert name ="TraitementMenu"  >
+                        <ui:include src="TraitementMenu.xhtml"/></ui:insert>
+                      
+                </p:layoutUnit>
+
+                <p:layoutUnit id = "center" position="center"  style="padding:0px;border:2px">
+                    <h:form >
+
+                        <p:panel  id ="OptionPanel">
+
+                            <p:panel id ="HomePagePanel" rendered="#{ProcessListBean.selectedOption == ProcessListBean.homePage}">
+                                <h:outputText value="Welcome home"/>
+                            </p:panel>
+
+                            <p:panel id="TraitementPanel" rendered="#{ProcessListBean.selectedOption == ProcessListBean.standardPageTraitement}" style="border:0px">
+                                <ui:insert name ="standardPageTraitement">
+                                    <ui:include src="standard.xhtml"/></ui:insert>
+                            </p:panel>
+
+                            <p:panel id="MailPanel" rendered="#{ProcessListBean.selectedOption == ProcessListBean.mail}" style="border:0px">
+                                <ui:insert name ="Mail">
+                                    <ui:include src="Mail.xhtml"/></ui:insert>
+                            </p:panel>
+
+                            <p:panel id="ResourcesPanel" rendered="#{ProcessListBean.selectedOption == ProcessListBean.resources}" style="border:0px">
+                                <ui:insert name ="Ressources">
+                                    <ui:include src="tabView.xhtml"/></ui:insert>
+                            </p:panel>
+
+
+
+                        </p:panel>
+                    </h:form>
+
+                </p:layoutUnit>
+
+            </p:layout>
+        </h:form>
+    </h:body>
+
+</html>
+

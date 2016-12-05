@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head><title>Control Quality of Data with FastQC</title></h:head>
+
+    <h:body>
+        <h:form id="form" >
+ 
+        <p:fileUpload fileUploadListener="#{fileUploadController.upload}"
+allowTypes="/(.*)$/" sizeLimit="100000" />
+ 
+        </h:form>
+        
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+    Select File to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload File" name="submit">
+        </form>
+        
+    </h:body>
+</html>

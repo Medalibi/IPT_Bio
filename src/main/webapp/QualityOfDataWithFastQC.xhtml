@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ez="http://xmlns.jcp.org/jsf/composite/ezcomp">
+    <ui:component>
+        <title> Home page</title>
+       
+        <h2 style="margin-top:0">FastQC</h2>
+        <h5>  FastQC reads a set of sequence files and produces from each one
+            a quality control report consisting of  a  number  of  different
+            modules,  each  one  of  which will help to identify a different
+            potential type of problem in your data.
+        </h5>
+        <h:outputText value="Please enter the location of the treatment:" style=" font-family: Times New Roman;font-size: 20px;"/>
+
+        <p:growl id="msgUpload" life ="3000"></p:growl>
+
+        <p:multiSelectListbox value ="#{multiSelectView.selection}" effect="slide" style="position: absolute;left: 45%;top: 40%" >
+            <f:selectItems value="#{multiSelectView.servers}" />
+        </p:multiSelectListbox>
+        <p:commandButton 
+            value="Save location"
+            action="#{multiSelectView.CreateFolders()}"
+            onclick="PF('dlg3').show()"
+            update="me"
+            icon="ui-icon-check" 
+            style="position: absolute;left:5% ;top: 55% " 
+            />
+        <h:outputText id="out" value="Value: #{multiSelectView.selection}" style="display:block" />
+        <p:growl id="msgExecute" life ="3000"></p:growl>
+        <p:commandButton
+            value="Execute" 
+            icon="ui-icon-check"
+            style="position: absolute;left: 7%;top: 95%"
+            action ="#{URLConnectionReader.URLConnectionReader()}"
+            update="msgExecute"/>
+        <p:commandButton
+            value="Upload" 
+            icon="ui-icon-check"
+            style="position: absolute;left: 7%;top: 75%"
+            action ="#{QualityOfDataManagedBean.buttonAction}"
+            update="msgExecute"/>
+        
+           
+        <p:dialog header="Your Existing files in this location"  widgetVar="dlg3" showEffect="explode" hideEffect="bounce">
+            <h:outputText id="me" value="#{multiSelectView.getlistExistingFiles()}" escape="false" style="display: block; white-space: pre-wrap;"/>
+        </p:dialog>
+    </ui:component>
+</html>

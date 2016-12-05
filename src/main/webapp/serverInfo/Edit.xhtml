@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServerInfoEditDlg" widgetVar="ServerInfoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditServerInfoTitle}">
+            <h:form id="ServerInfoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{serverInfoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditServerInfoLabel_serverName}" for="serverName" />
+                        <p:inputText id="serverName" value="#{serverInfoController.selected.serverName}" title="#{bundle.EditServerInfoTitle_serverName}" required="true" requiredMessage="#{bundle.EditServerInfoRequiredMessage_serverName}"/>
+                        <p:outputLabel value="#{bundle.EditServerInfoLabel_CPULoad}" for="CPULoad" />
+                        <p:inputText id="CPULoad" value="#{serverInfoController.selected.CPULoad}" title="#{bundle.EditServerInfoTitle_CPULoad}" />
+                        <p:outputLabel value="#{bundle.EditServerInfoLabel_usedRam}" for="usedRam" />
+                        <p:inputText id="usedRam" value="#{serverInfoController.selected.usedRam}" title="#{bundle.EditServerInfoTitle_usedRam}" />
+                        <p:outputLabel value="#{bundle.EditServerInfoLabel_IPAddress}" for="IPAddress" />
+                        <p:inputText id="IPAddress" value="#{serverInfoController.selected.IPAddress}" title="#{bundle.EditServerInfoTitle_IPAddress}" required="true" requiredMessage="#{bundle.EditServerInfoRequiredMessage_IPAddress}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{serverInfoController.update}" value="#{bundle.Save}" update="display,:ServerInfoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServerInfoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ServerInfoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,15 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition class="ui-composition" id="pieModel">
+        
+        <p:pieChart value="#{RamPieChartModel.pieModel1}" style="height:200px; width: 250px" sliceMargin="5" legendPosition="o" diameter="135" showDataLabels="true" dataFormat="value '%'" />
+    </ui:composition>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:component>
+        <p:growl id="growl" showDetail="true" autoUpdate="true"/>
+        <p:outputLabel value="Let us know how we can help by filling the form below :" style="left: 20px"/> 
+        <p:editor id="editor" widgetVar="editorWidget"   value="#{MailBean.text}"  style="padding-top: 40px"/>
+
+        <h:panelGrid columns="2" cellpadding="5px"> 
+             <div>  <p:commandButton value="Clear" type="button" onclick="PF('editorWidget').clear();" icon="ui-icon-close" /></div>
+            <div><p:commandButton value="Submit"  icon="ui-icon-disk"  action="#{MailBean.text}"/></div>
+
+        </h:panelGrid>
+    </ui:component>
+</html>

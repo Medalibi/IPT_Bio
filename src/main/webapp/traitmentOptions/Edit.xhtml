@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraitmentOptionsEditDlg" widgetVar="TraitmentOptionsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTraitmentOptionsTitle}">
+            <h:form id="TraitmentOptionsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{traitmentOptionsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTraitmentOptionsLabel_nameOption}" for="nameOption" />
+                        <p:inputText id="nameOption" value="#{traitmentOptionsController.selected.nameOption}" title="#{bundle.EditTraitmentOptionsTitle_nameOption}" required="true" requiredMessage="#{bundle.EditTraitmentOptionsRequiredMessage_nameOption}"/>
+                        <p:outputLabel value="#{bundle.EditTraitmentOptionsLabel_typeOption}" for="typeOption" />
+                        <p:inputText id="typeOption" value="#{traitmentOptionsController.selected.typeOption}" title="#{bundle.EditTraitmentOptionsTitle_typeOption}" />
+                        <p:outputLabel value="#{bundle.EditTraitmentOptionsLabel_dscOption}" for="dscOption" />
+                        <p:inputText id="dscOption" value="#{traitmentOptionsController.selected.dscOption}" title="#{bundle.EditTraitmentOptionsTitle_dscOption}" />
+                        <p:outputLabel value="#{bundle.EditTraitmentOptionsLabel_idTraitementOptions}" for="idTraitementOptions" />
+                        <p:inputText id="idTraitementOptions" value="#{traitmentOptionsController.selected.idTraitementOptions}" title="#{bundle.EditTraitmentOptionsTitle_idTraitementOptions}" required="true" requiredMessage="#{bundle.EditTraitmentOptionsRequiredMessage_idTraitementOptions}"/>
+                        <p:outputLabel value="#{bundle.EditTraitmentOptionsLabel_idTraitement}" for="idTraitement" />
+                        <p:selectOneMenu id="idTraitement" value="#{traitmentOptionsController.selected.idTraitement}" required="true" requiredMessage="#{bundle.EditTraitmentOptionsRequiredMessage_idTraitement}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traitementController.itemsAvailableSelectOne}"
+                                           var="idTraitementItem"
+                                           itemValue="#{idTraitementItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traitmentOptionsController.update}" value="#{bundle.Save}" update="display,:TraitmentOptionsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TraitmentOptionsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TraitmentOptionsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

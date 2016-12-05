@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServerInfoCreateDlg" widgetVar="ServerInfoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateServerInfoTitle}">
+            <h:form id="ServerInfoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{serverInfoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateServerInfoLabel_serverName}" for="serverName" />
+                        <p:inputText id="serverName" value="#{serverInfoController.selected.serverName}" title="#{bundle.CreateServerInfoTitle_serverName}" required="true" requiredMessage="#{bundle.CreateServerInfoRequiredMessage_serverName}"/>
+                        <p:outputLabel value="#{bundle.CreateServerInfoLabel_CPULoad}" for="CPULoad" />
+                        <p:inputText id="CPULoad" value="#{serverInfoController.selected.CPULoad}" title="#{bundle.CreateServerInfoTitle_CPULoad}" />
+                        <p:outputLabel value="#{bundle.CreateServerInfoLabel_usedRam}" for="usedRam" />
+                        <p:inputText id="usedRam" value="#{serverInfoController.selected.usedRam}" title="#{bundle.CreateServerInfoTitle_usedRam}" />
+                        <p:outputLabel value="#{bundle.CreateServerInfoLabel_IPAddress}" for="IPAddress" />
+                        <p:inputText id="IPAddress" value="#{serverInfoController.selected.IPAddress}" title="#{bundle.CreateServerInfoTitle_IPAddress}" required="true" requiredMessage="#{bundle.CreateServerInfoRequiredMessage_IPAddress}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{serverInfoController.create}" value="#{bundle.Save}" update="display,:ServerInfoListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServerInfoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ServerInfoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <style type="text/css">
+            .column1{width: 80px;height:auto}
+            .column2{width: 80px;height:auto}
+            
+           </style>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
+                <h:form id="menuForm">
+                    <p:menubar>
+                        <p:menuitem value="#{bundle.Home}" outcome="/home.xhtml" icon="ui-icon-home"/>
+                        <p:submenu label="#{bundle.Maintenance}" style="width: 200px">
+                            <p:menuitem value="Server List" outcome="List.xhtml" icon="ui-icon-arrowrefresh-1-e" />
+                            <p:menuitem value="Change Password"  icon="ui-icon-gear" onclick="PF('dlg3').show()"  />
+                            <p:separator/>
+                            <p:menuitem value="Change Email Password" onclick="PF('dlg3').show()"/>
+                        </p:submenu>
+                        <p:menuitem value="Quit" onclick="#{bundle.Close}"
+                                    style=" position: absolute; right:10px" icon="ui-icon-power"/>
+
+                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+        <p:dialog header="Change your Passowrd" height="150px" widgetVar="dlg3" showEffect="explode" hideEffect="bounce">
+
+            <h:form id="insertForm" >
+                <h:panelGrid  columns="2" id="matchGrid" cellspacing="5" columnClasses="column1,column2" style="width: 100%" > >     
+                    <p:growl id="messages" showDetail="true" autoUpdate="true" life="3000" />
+                    
+                        
+                    <h:outputLabel for="pwd1" value="Password 1: *" />  
+                    <p:password id="pwd1" value="#{AdminUserBean.password}" feedback="true" label="Password 1" match="pwd2" required="true"/>  
+
+                    <h:outputLabel for="pwd2" value="Password 2: *" />  
+                    <p:password id="pwd2" value="#{AdminUserBean.password2}" feedback="false" label="Password 2" required="true"/>  
+                  
+                </h:panelGrid>  
+                <p:commandButton id="submit" value="Submit" update="matchGrid" 
+                                 style="text-align: center; position: absolute; bottom:15px; left: 120px; height: 25px ; width: 80px"
+                                 action="#{AdminUserBean.changePassword()}"
+                                 oncomplete="PF('dlg3').hide()"/>
+            </h:form>
+        </p:dialog>
+          <p:dialog header="Change your Email Passowrd" height="150px" widgetVar="dlg3" showEffect="explode" hideEffect="bounce">
+
+            <h:form id="updateEmailPassword" >
+                <h:panelGrid  columns="2" id="matchGrid" cellspacing="5" columnClasses="column1,column2" style="width: 100%" > >     
+                    <p:growl id="messages" showDetail="true" autoUpdate="true" life="3000" />
+                    
+                        
+                    <h:outputLabel for="pwd1" value="Password 1: *" />  
+                    <p:password id="pwd1" value="#{AdminUserBean.password}" feedback="true" label="Password 1" match="pwd2" required="true"/>  
+
+                    <h:outputLabel for="pwd2" value="Password 2: *" />  
+                    <p:password id="pwd2" value="#{AdminUserBean.password2}" feedback="false" label="Password 2" required="true"/>  
+                  
+                </h:panelGrid>  
+                <p:commandButton id="submit" value="Submit" update="matchGrid" 
+                                 style="text-align: center; position: absolute; bottom:15px; left: 120px; height: 25px ; width: 80px"
+                                 action="#{AdminUserBean.changeEmailPassword()}"
+                                 oncomplete="PF('dlg3').hide()"/>
+            </h:form>
+        </p:dialog>
+  
+  
+
+    </h:body>
+
+</html>

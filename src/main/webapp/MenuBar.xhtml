@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition class="ui-composition">
+    <h:head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <style>
+                .ui-layout-north {
+                    z-index: 20 !important;
+                    overflow: visible !important;
+                }
+                .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+            </style>
+
+                <p:menubar style="box-shadow:10px 10px 5px">
+                    <p:menuitem  value="Welcome #{LoginUserBean.uname}" style="margin-left:50px"/>
+                    <p:submenu label="File"  style="margin-left:50px" icon="ui-icon-document">
+                        <p:menuitem value="Upload" url="#" />
+                        <p:menuitem value="Dowload" url="#" />
+                    </p:submenu>
+
+                    <p:menuitem value="Public Calender" style="margin-left:100px"/>
+                    <p:menuitem value="Resources"  action = "#{ProcessListBean.setSelectedOption(ProcessListBean.resources)}" update="@([id$=OptionPanel])"  style="margin-left:80px"  />
+                    <p:submenu label="Mail" icon="ui-icon-mail-closed" style="margin-left:80px">
+                        <p:menuitem value="Admin Mail" action = "#{ProcessListBean.setSelectedOption(ProcessListBean.mail)}" update="@([id$=OptionPanel])" />
+                    </p:submenu>
+                    <p:submenu label="Help" icon="ui-icon-help" style="margin-left:120px" >
+                        <p:menuitem value="Contents" url="#" />
+                        <p:submenu label="Search" icon="ui-icon-search">
+                            <p:submenu label="Text">
+                                <p:menuitem value="Workspace" url="#" />
+                            </p:submenu>
+                            <p:menuitem value="File" url="#" />
+                        </p:submenu>
+                    </p:submenu>
+                    <p:submenu label="Logout" icon="ui-icon-extlink" style="margin-left:120px"  >
+                    </p:submenu>
+
+
+                </p:menubar>
+
+    </h:head>
+           </ui:composition>
+</html>

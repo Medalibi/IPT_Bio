@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:component >
+        <h:outputText value="#{traitementController.selected.nameTraitement}"/>
+        <p:separator/>
+        <h:outputText value="#{traitementController.selected.dscTraitement}" style="text-align:center"/>
+        <p:separator/>
+
+        <p:wizard flowListener="#{UserWizard.onFlowProcess}" style="margin-top:20px">
+            <p:growl id="msgs" showDetail="true" />
+            <p:tab id="StepOne" title="Step 1" >
+                <p:panel header="Choose the workspace location"  style="margin-top:10px">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" />
+                    <h:outputText value="Please choose a workspace :" style=" font-family: Arial, Helvetica, sans-serif; color: #008B8B;" />
+                    <p:separator/>
+                    <p:multiSelectListbox value ="#{multiSelectView.selection}" effect="slide" style="position: relative;left:10%">
+                        <f:selectItems value="#{multiSelectView.servers}" actionListener="#{multiSelectView.info}"/>
+                    </p:multiSelectListbox>
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="StepTwo" title="Step 2">
+                <p:panel header="Upload Files">
+                    <p:messages />
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="If you need to upload files else skip this step" />
+                    </h:panelGrid>
+                </p:panel>
+            </p:tab>
+
+            <p:tab id="StepThree" title="Step 3">
+                <p:panel header="Fill the fields" >
+                    <h3><h:outputText value="Choose your options and put its arguments"/></h3>
+
+                    
+                </p:panel>
+            </p:tab>
+</p:wizard>
+</ui:component>
+</html>
